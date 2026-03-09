@@ -82,3 +82,13 @@ export const reportSchema = {
     "behavioralQuestions",
   ],
 };
+
+export const resumeSchema = {
+  type: "object",
+  properties: {
+    html: {
+      type: "string",
+    },
+  },
+  required: ["html"],
+};

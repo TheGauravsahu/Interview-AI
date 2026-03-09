@@ -4,7 +4,7 @@ import {
   RiUploadCloud2Line,
   RiUserLine,
 } from "@remixicon/react";
-import Buttton from "../../../components/Buttton";
+import Button from "../../../components/Buttton";
 import Badge from "./Badge";
 import Dropzone from "react-dropzone";
 import { useState } from "react";
@@ -151,15 +151,15 @@ export default function GenerateInterview() {
         <span className="text-gray-400">
           Ai Powered Interview Report Generator - Approx 30s
         </span>
-        <Buttton
+        <Button
+          className="w-xs bg-linear-to-b px-2 rounded-lg from-fuchsia-400 to-fuchsia-800 hover:from-fuchsia-600 hover:to-fuchsia-800  transition-all tracking-tight font-semibold"
           isLoading={generateInterview.isPending}
           loadingText="Generating..."
           onClick={() => handleGenerateReport()}
-          className="w-xs rounded-lg bg-linear-to-r from-fuchsia-600  to-fuchsia-800"
         >
           <RiSparkling2Line />
           Generate
-        </Buttton>
+        </Button>
       </div>
     </div>
   );

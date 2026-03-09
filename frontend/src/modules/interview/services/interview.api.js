@@ -23,6 +23,10 @@ class InterviewApi {
   async getRecentInterviews() {
     return await api.get("/interviews/recent");
   }
+
+  async generateResumePDF(id) {
+    return await api.post("/interviews/" + id + "/generateResumePDF");
+  }
 }
 
 export const interviewApi = new InterviewApi();

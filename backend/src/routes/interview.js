@@ -34,6 +34,18 @@ interviewRouter.get(
 );
 
 /**
+ * @route POST /api/interviews/:id/generateResumePDF
+ * @descripton generate resume pdf based on interview report id using AI service
+ * based on id.
+ * @access private
+ */
+interviewRouter.post(
+  "/:id/generateResumePDF",
+  authMiddleware,
+  interviewController.generateResumePDF,
+);
+
+/**
  * @route GET /api/interviews/:id
  * @descripton get details of interview report
  * based on id.

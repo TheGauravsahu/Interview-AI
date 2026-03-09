@@ -4,6 +4,7 @@ import LoadingScreen from "../../../components/LoadingScreen";
 import ErrorOccurred from "../../../components/ErrorOccurred";
 import {
   RiAiGenerate2Line,
+  RiSparkling2Line,
   RiExpandLeftRightLine,
   RiChat4Line,
   RiSendPlaneLine,
@@ -17,6 +18,8 @@ import RoadMapDay from "../components/RoadMapDay.jsx";
 import NoQuestionFound from "../components/NoQuestionFound.jsx";
 import Badge from "../components/Badge.jsx";
 import MatchScore from "../components/MatchScore.jsx";
+import Button from "../../../components/Buttton.jsx";
+import { useGenerateResumePDF } from "../hooks/useGenerateResumePDF.js";
 
 const NAV_ITEMS = [
   {
@@ -44,6 +47,7 @@ const NAV_ITEMS = [
 
 export default function Interview() {
   const [activeNav, setActiveNav] = useState("aiReport");
+  const generateResume = useGenerateResumePDF();
   const { id } = useParams();
   const { data, isLoading, error } = useInterview(id);
 
@@ -57,30 +61,43 @@ export default function Interview() {
       {/* CARD */}
       <div className="bg-[#141A22] max-w-6xl mx-auto border border-gray-600 rounded-lg h-[90vh] flex  overflow-hidden">
         {/* LEFT SIDEBAR(NAV ITEMS) */}
-        <div className="border-r border-gray-600 h-full w-56 p-4">
-          <Link
-            to="/"
-            className="text-gray-600 tracking-wide font-bold  text-xs"
-          >
-            HOME
-          </Link>
-          <div className="mt-4 space-y-1">
-            {NAV_ITEMS.map((i) => (
-              <div
-                key={i.id}
-                onClick={() => setActiveNav(i.id)}
-                className={cn(
-                  "flex items-center gap-2 text-sm w-full py-1 px-2 cursor-pointer font-semibold hover:scale-95 transition",
-                  i.id === activeNav
-                    ? "text-fuchsia-400 bg-fuchsia-700/50 border-fuchsia-900 rounded-lg "
-                    : "text-white",
-                )}
-              >
-                {i.icon}
-                <span>{i.label}</span>
-              </div>
-            ))}
+        <div className="border-r border-gray-600 h-full w-56 p-4 flex flex-col justify-between">
+          {/* top */}
+          <div>
+            <Link
+              to="/"
+              className="text-gray-600 tracking-wide font-bold  text-xs  px-2"
+            >
+              HOME
+            </Link>
+            <div className="mt-4 space-y-1">
+              {NAV_ITEMS.map((i) => (
+                <div
+                  key={i.id}
+                  onClick={() => setActiveNav(i.id)}
+                  className={cn(
+                    "flex items-center  px-2 gap-2 text-sm w-full py-1 cursor-pointer font-semibold hover:scale-95 transition",
+                    i.id === activeNav
+                      ? "text-fuchsia-400 bg-fuchsia-700/50 border-fuchsia-900 rounded-lg "
+                      : "text-white",
+                  )}
+                >
+                  {i.icon}
+                  <span>{i.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
+          {/* bottom */}
+          <Button
+            isLoading={generateResume.isPending}
+            loadingText="Downloading...."
+            onClick={()=>generateResume.mutate(id)}
+            className="w-full bg-linear-to-b px-2 rounded-lg from-fuchsia-400 to-fuchsia-800 hover:from-fuchsia-600 hover:to-fuchsia-800  transition-all tracking-tight font-semibold"
+          >
+            <RiSparkling2Line className="w-4 h-4" />
+            Download Resume
+          </Button>
         </div>
 
         {/* CENTER */}

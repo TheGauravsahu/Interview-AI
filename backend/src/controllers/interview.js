@@ -89,6 +89,24 @@ class InterviewController {
       next(e);
     }
   }
+
+  /**
+   * @name generateResumePDF
+   * @description Generate resume pdf based on interview report id using AI service
+   * @access private
+   */
+  async generateResumePDF(req, res, next) {
+    try {
+      const pdf = await interviewService.generateResumePDF(req.params.id);
+      res.set({
+        "Content-Type": "application/pdf",
+        "Content-Disposition": `attachment; filename=resume_${req.params.id}.pdf`,
+      });
+      return res.send(pdf);
+    } catch (e) {
+      next(e);
+    }
+  }
 }
 
 export const interviewController = new InterviewController();
