@@ -1,0 +1,12 @@
+import mongoose from "mongoose";
+import env from "./env.js";
+import logger from "./logger.js";
+
+export const connectDb = async () => {
+  try {
+    await mongoose.connect(env.MONGO_URI);
+    logger.info("Database connected successfully.");
+  } catch (e) {
+    logger.error("Faild to connect to db.", e);
+  }
+};
