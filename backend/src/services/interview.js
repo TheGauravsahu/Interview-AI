@@ -1,6 +1,7 @@
 import { interviewReportModel } from "../models/interviewReport.js";
 import { generateResumeAI } from "./ai.js";
 import { generatePDF } from "../utils/pdf.js";
+import { InterviewError } from "../utils/interviewError.js";
 
 class InterviewService {
   async getInterviewReportById(id, userId) {
