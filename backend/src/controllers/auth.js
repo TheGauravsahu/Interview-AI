@@ -32,11 +32,19 @@ class AuthController {
         req.body.password,
       );
 
-      return res.status(200).cookie("jwt", data.token).json({
-        status: "success",
-        message: "Signed in successfully.",
-        data: data.user,
-      });
+      return res
+        .status(200)
+        .cookie("jwt", data.token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "none", // cross-site cookies
+          maxAge: 7 * 24 * 60 * 60 * 1000,
+        })
+        .json({
+          status: "success",
+          message: "Signed in successfully.",
+          data: data.user,
+        });
     } catch (e) {
       next(e);
     }
