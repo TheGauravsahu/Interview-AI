@@ -3,8 +3,14 @@ import { generateResumeAI } from "./ai.js";
 import { generatePDF } from "../utils/pdf.js";
 
 class InterviewService {
-  async getInterviewReportById(id) {
-    return await interviewReportModel.findById(id);
+  async getInterviewReportById(id, userId) {
+    const interviewReport = await interviewReportModel.findById(id);
+    if (!interviewReport)
+      throw new InterviewError("Interview report not found", 404);
+    if (interviewReport.user.toString() !== userId) {
+      throw new InterviewError("Unauthorized access to interview report", 403);
+    }
+    return interviewReport;
   }
 
   async getRecentInterviewsReports(userId) {

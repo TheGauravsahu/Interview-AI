@@ -59,7 +59,10 @@ class InterviewController {
   async getInterviewReportById(req, res, next) {
     const { id } = req.params;
     try {
-      const data = await interviewService.getInterviewReportById(id);
+      const data = await interviewService.getInterviewReportById(
+        id,
+        req.user.id,
+      );
       return res.status(200).json({
         status: "success",
         message: "Successfully fetched interview report details.",
