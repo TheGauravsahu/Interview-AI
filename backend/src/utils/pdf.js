@@ -1,11 +1,17 @@
 import puppeteer from "puppeteer";
+import logger from "../config/logger.js";
 
 export const generatePDF = async (content) => {
   console.log("HTML_CONTENT", content);
-  const browser = await puppeteer.launch({
-    headless: "new",
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
-  });
+  let browser;
+  try {
+    browser = await puppeteer.launch({
+      headless: "new",
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    });
+  } catch (e) {
+    logger.info("Could not create a browswer instance", e);
+  }
   const page = await browser.newPage();
   await page.setContent(content, { waitUntil: "networkidle0" });
 
