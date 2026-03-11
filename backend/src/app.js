@@ -7,6 +7,7 @@ import cors from "cors";
 import env from "./config/env.js";
 import interviewRouter from "./routes/interview.js";
 import morgan from "morgan";
+import { rateLimiter } from "./middlewares/rateLimit.js";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(helmet());
 app.use(cookieParser());
 app.use(cors({ origin: env.FRONTEND_URL, credentials: true }));
 app.use(morgan("dev"));
+app.use(rateLimiter);
 
 app.get("/health", (req, res) => {
   return res.status(200).json({
