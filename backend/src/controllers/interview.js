@@ -17,7 +17,13 @@ class InterviewController {
    */
   async generateInterviewReport(req, res, next) {
     const file = req.file;
-    const { text } = await new PDFParse(Uint8Array.from(file.buffer)).getText();
+    let content;
+    if (file) {
+      const { text } = await new PDFParse(
+        Uint8Array.from(file.buffer),
+      ).getText();
+      content = text;
+    }
 
     const { selfDescription, jobDescription } = req.body;
     logger.info(
@@ -28,14 +34,14 @@ class InterviewController {
 
     try {
       const aiResponse = await generateInterviewReportAI({
-        resume: text,
+        resume: content,
         selfDescription,
         jobDescription,
       });
 
       const interviewReport = await interviewReportModel.create({
         user: req.user.id,
-        resume: text,
+        resume: content,
         selfDescription,
         jobDescription,
         ...aiResponse,
