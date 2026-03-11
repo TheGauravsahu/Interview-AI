@@ -51,10 +51,10 @@ export default function Interview() {
   const { id } = useParams();
   const { data, isLoading, error } = useInterview(id);
 
-  const interview = data.data;
-
   if (isLoading) return <LoadingScreen />;
   if (error) return <ErrorOccurred error={error.message} />;
+
+  const interview = data.data;
 
   return (
     <div className="h-screen w-full flex items-center justify-center ">
@@ -92,7 +92,7 @@ export default function Interview() {
           <Button
             isLoading={generateResume.isPending}
             loadingText="Downloading...."
-            onClick={()=>generateResume.mutate(id)}
+            onClick={() => generateResume.mutate(id)}
             className="w-full bg-linear-to-b px-2 rounded-lg from-fuchsia-400 to-fuchsia-800 hover:from-fuchsia-600 hover:to-fuchsia-800  transition-all tracking-tight font-semibold"
           >
             <RiSparkling2Line className="w-4 h-4" />
