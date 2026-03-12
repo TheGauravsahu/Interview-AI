@@ -7,10 +7,16 @@ export const usePrintResumePDF = (id) =>
     mutationFn: () => interviewApi.generateResume(id),
     onSuccess: async (res) => {
       try {
+        const printWindow = window.open("", "_blank");
         const html = res.data;
-        const newWindow = window.open("");
-        newWindow.document.write(html);
-        newWindow.print();
+
+        if (!printWindow) {
+          toast.error("Popup blocked by browser");
+          return;
+        }
+        printWindow.document.write(html);
+        printWindow.document.close();
+        printWindow.print();
         toast.success("Resume PDF generated successfully");
       } catch (err) {
         toast.error("Failed to generate resume PDF");

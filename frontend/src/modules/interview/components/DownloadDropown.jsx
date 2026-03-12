@@ -7,8 +7,9 @@ import { useState } from "react";
 export default function DownloadDropown({ id }) {
   const generateResume = useGenerateResumePDF(id);
   const printResume = usePrintResumePDF(id);
-
   const [open, setOpen] = useState(false);
+
+
 
   return (
     <div>
@@ -33,7 +34,7 @@ export default function DownloadDropown({ id }) {
             <Button
               isLoading={generateResume.isPending}
               loadingText="Downloading...."
-              onClick={() => generateResume.mutate()}
+              onClick={() => printResume.mutate()}
               className="w-full bg-green-800/50 text-green-400 tracking-tight font-semibold"
             >
               Download Resume
