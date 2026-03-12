@@ -6,8 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "node --watch src/server.js",
-    "start": "node src/server.js",
-    "postinstall": "npx puppeteer browsers install chrome"
+    "start": "node src/server.js"
   },
   "keywords": [],
   "author": "",
@@ -27,7 +26,6 @@
     "morgan": "^1.10.1",
     "multer": "^2.1.1",
     "pdf-parse": "^2.4.5",
-    "puppeteer": "^24.38.0",
     "winston": "^3.19.0",
     "zod": "^4.3.6"
   },

@@ -46,7 +46,7 @@ export default function Signin() {
           </div>
           <Buttton
             className="bg-fuchsia-500"
-            isLoading={false}
+            isLoading={signIn.isLoading}
             loadingText={"Signing in..."}
           >
             Signin

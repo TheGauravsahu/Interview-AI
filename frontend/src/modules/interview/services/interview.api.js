@@ -24,8 +24,8 @@ class InterviewApi {
     return await api.get("/interviews/recent");
   }
 
-  async generateResumePDF(id) {
-    return await api.post("/interviews/" + id + "/generateResumePDF");
+  async generateResume(id) {
+    return await api.post("/interviews/" + id + "/generateResume");
   }
 }
 

@@ -40,9 +40,9 @@ interviewRouter.get(
  * @access private
  */
 interviewRouter.post(
-  "/:id/generateResumePDF",
+  "/:id/generateResume",
   authMiddleware,
-  interviewController.generateResumePDF,
+  interviewController.generateResume,
 );
 
 /**

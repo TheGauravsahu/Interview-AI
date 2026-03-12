@@ -100,18 +100,18 @@ class InterviewController {
   }
 
   /**
-   * @name generateResumePDF
+   * @name generateResumeController
    * @description Generate resume pdf based on interview report id using AI service
    * @access private
    */
-  async generateResumePDF(req, res, next) {
+  async generateResume(req, res, next) {
     try {
-      const pdf = await interviewService.generateResumePDF(req.params.id);
-      res.set({
-        "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename=resume_${req.params.id}.pdf`,
+      const data = await interviewService.generateResume(req.params.id);
+      return res.status(200).json({
+        status: "success",
+        message: "Successfully generated resume.",
+        data,
       });
-      return res.send(pdf);
     } catch (e) {
       next(e);
     }

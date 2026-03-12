@@ -83,6 +83,7 @@ export const reportSchema = {
   ],
 };
 
+
 export const resumeSchema = {
   type: "object",
   properties: {

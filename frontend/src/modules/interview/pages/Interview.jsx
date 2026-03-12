@@ -4,7 +4,6 @@ import LoadingScreen from "../../../components/LoadingScreen";
 import ErrorOccurred from "../../../components/ErrorOccurred";
 import {
   RiAiGenerate2Line,
-  RiSparkling2Line,
   RiExpandLeftRightLine,
   RiChat4Line,
   RiSendPlaneLine,
@@ -18,8 +17,8 @@ import RoadMapDay from "../components/RoadMapDay.jsx";
 import NoQuestionFound from "../components/NoQuestionFound.jsx";
 import Badge from "../components/Badge.jsx";
 import MatchScore from "../components/MatchScore.jsx";
-import Button from "../../../components/Buttton.jsx";
-import { useGenerateResumePDF } from "../hooks/useGenerateResumePDF.js";
+
+import DownloadDropown from "../components/DownloadDropown.jsx";
 
 const NAV_ITEMS = [
   {
@@ -47,9 +46,9 @@ const NAV_ITEMS = [
 
 export default function Interview() {
   const [activeNav, setActiveNav] = useState("aiReport");
-  const generateResume = useGenerateResumePDF();
   const { id } = useParams();
   const { data, isLoading, error } = useInterview(id);
+ 
 
   if (isLoading) return <LoadingScreen />;
   if (error) return <ErrorOccurred error={error.message} />;
@@ -88,16 +87,8 @@ export default function Interview() {
               ))}
             </div>
           </div>
-          {/* bottom */}
-          <Button
-            isLoading={generateResume.isPending}
-            loadingText="Downloading...."
-            onClick={() => generateResume.mutate(id)}
-            className="w-full bg-linear-to-b px-2 rounded-lg from-fuchsia-400 to-fuchsia-800 hover:from-fuchsia-600 hover:to-fuchsia-800  transition-all tracking-tight font-semibold"
-          >
-            <RiSparkling2Line className="w-4 h-4" />
-            Download Resume
-          </Button>
+          {/* Download/Print */}
+         <DownloadDropown id={id} />
         </div>
 
         {/* CENTER */}
