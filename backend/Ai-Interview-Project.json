@@ -1,0 +1,152 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Ai Interview Project",
+    "description": "Exported from Requestly API Client",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/auth/signIn": {
+      "post": {
+        "summary": "Sign In",
+        "description": "",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/auth/signUp": {
+      "post": {
+        "summary": "Sign Up",
+        "description": "",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/auth/signOut": {
+      "post": {
+        "summary": "Sign Out",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/auth/getCurrentUser": {
+      "get": {
+        "summary": "Get Current User",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/interviews/69ae9e96e297e24c7d39001e/generateResumePDF": {
+      "post": {
+        "summary": "Generate Resume PDF",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/interviews": {
+      "post": {
+        "summary": "Generate Report",
+        "description": "",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "selfDescription": {
+                    "type": "string",
+                    "example": "I am a backend developer with 2 years of experience building REST APIs using Node.js, Express, and MongoDB.  I have worked on authentication systems, microservices architecture, and scalable backend systems."
+                  },
+                  "jobDescription": {
+                    "type": "string",
+                    "example": "i am  looking for a backend engineer who has experience with Node.js, Express, REST APIs, MongoDB, and microservices.  The candidate should be familiar with authentication systems, Docker, and scalable system design."
+                  },
+                  "resume": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ]
+}
